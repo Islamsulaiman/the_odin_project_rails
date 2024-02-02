@@ -20,7 +20,7 @@ class AttendeeEventsController < ApplicationController
           format.json { render :show, status: :created, location: @attendee_event }
         else
           format.html { render :new, status: :unprocessable_entity }
-          format.json { render :new, status: :unprocessable_entity, json: attendee_event.errors }
+          format.json { render :new, status: :unprocessable_entity, json: @attendee_event.errors }
         end
       end
     end
