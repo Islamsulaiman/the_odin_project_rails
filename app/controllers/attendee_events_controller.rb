@@ -7,6 +7,7 @@ class AttendeeEventsController < ApplicationController
     end
     
     def show
+      @attendee_event = AttendeeEvent.find(params[:id])
     end
 
     def new
@@ -14,13 +15,11 @@ class AttendeeEventsController < ApplicationController
     end
 
     def create
-
-      byebug
-      @attendee_event = AttendeeEvent.new(attendee_id: User.find(params[:attendee_event][:attendee_id]), attended_event_id: Event.find(params[:attendee_event][:attended_event_id]))
+      @attendee_event = AttendeeEvent.new(event_attendee_id: params[:attendee_event][:attendee_id], attended_event_id: params[:attendee_event][:attended_event_id])
 
       respond_to do |format|
         if @attendee_event.save
-          format.html { redirect_to event_url(@event), notice: "Event attendee was successfully created." }
+          format.html { redirect_to attendee_events_path(@attendee_event), notice: "Event attendee was successfully created." }
           format.json { render :show, status: :created, location: @attendee_event }
         else
           format.html { render :new, status: :unprocessable_entity }
