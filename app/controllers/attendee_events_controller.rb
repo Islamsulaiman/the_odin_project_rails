@@ -1,5 +1,7 @@
 class AttendeeEventsController < ApplicationController
 
+  before_action :get_events, only: [:create, :new]
+
     def index
       @attendee_events = AttendeeEvent.all 
     end
@@ -12,7 +14,9 @@ class AttendeeEventsController < ApplicationController
     end
 
     def create
-      @attendee_event = AttendeeEvent.new(attendee_events_params)
+
+      byebug
+      @attendee_event = AttendeeEvent.new(attendee_id: User.find(params[:attendee_event][:attendee_id]), attended_event_id: Event.find(params[:attendee_event][:attended_event_id]))
 
       respond_to do |format|
         if @attendee_event.save
@@ -27,8 +31,12 @@ class AttendeeEventsController < ApplicationController
 
     private
 
+    def get_events
+      @events = Event.all
+    end
+
     def attendee_events_params
-      params.require(:attendee_event).permit(:attendee_id, :attended_event_id)
+      @params = params.require(:attendee_event).permit(:attendee_id, :attended_event_id)
     end
 
 end
