@@ -4,6 +4,9 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+    past_events
+    future_events
+
   end
 
   # GET /events/1 or /events/1.json
@@ -67,5 +70,13 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:name, :location, :date).merge(creator_id: current_user.id)
+    end
+
+    def past_events
+      @past_events = Event.where('date < ?', Date.today )
+    end
+
+    def future_events
+      @future_events = Event.where('date >= ?', Date.today)
     end
 end

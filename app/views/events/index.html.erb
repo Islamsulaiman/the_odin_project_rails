@@ -1,9 +1,29 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Events</h1>
+<h1>All events</h1>
 
 <div id="events">
   <% @events.each do |event| %>
+    <%= render event %>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+  <% end %>
+</div>
+
+<h1>Past events</h1>
+<div id="events">
+  <% @past_events.each do |event| %>
+    <%= render event %>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+  <% end %>
+</div>
+
+<h1>future events</h1>
+<div id="events">
+  <% @future_events.each do |event| %>
     <%= render event %>
     <p>
       <%= link_to "Show this event", event %>
