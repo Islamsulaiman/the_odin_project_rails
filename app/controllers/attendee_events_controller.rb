@@ -1,6 +1,7 @@
 class AttendeeEventsController < ApplicationController
 
   before_action :get_events, only: [:create, :new]
+  before_action :get_attendee_event, only: [:destroy]
 
     def index
       @attendee_events = AttendeeEvent.all 
@@ -28,10 +29,22 @@ class AttendeeEventsController < ApplicationController
       end
     end
 
+    def destroy
+      @attendee_event.destroy
+
+      respond_to do |format|
+        format.html { redirect_to attendee_events_path, notice: "Attendee event were deleted successfully" }
+      end
+    end
+
     private
 
     def get_events
       @events = Event.all
+    end
+
+    def get_attendee_event
+      @attendee_event = AttendeeEvent.find(params[:id])
     end
 
     def attendee_events_params
