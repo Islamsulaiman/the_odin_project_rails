@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
+    @attended_users = User.find(params[:id]).attendee_events
   end
 
   # GET /events/new
