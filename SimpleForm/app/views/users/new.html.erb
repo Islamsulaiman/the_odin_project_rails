@@ -1,0 +1,53 @@
+<h1>Hello users</h1>
+
+<!--
+<form action="/users" method="post" accept-charset="UTF-8">
+
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <label for="user_name">User Name</label>
+    <input type="text" id="user_name" name="user[user_name]">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="user[email]">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="user[password]">
+
+    <input type="submit">
+
+</form>
+-->
+
+<!--
+<%= form_tag(users_path) do %>
+
+    <%= label_tag :user_name %>
+    <%= text_field_tag :user_name %>
+
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+
+    <%= submit_tag "Create User" %>
+
+<% end %>
+-->
+
+<%= form_with model: @user, local: true do |f| %>
+
+    <%= f.label :user_name, "User name" %>
+    <%= f.text_field :user_name, placeholder: "What is your name" %>
+
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, placeholder: "Email" %>
+
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password, placeholder: "Email" %>
+
+    <%= f.submit "Create User" %>
+
+
+<% end %>
