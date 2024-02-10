@@ -1,0 +1,15 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<% if current_user.nil? %>
+    <div>
+        <%= link_to "Login", user_session_path %>
+        <%= link_to "Sign in", user_session_path %>
+    </div>
+<% else %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %>
+    <div>
+        <%= link_to "Events", events_path %>
+        <%= link_to "Event attendees", attendee_events_path %>
+    </div>
+<% end %>

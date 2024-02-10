@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @attendee_event %>
+
+<div>
+  <%= link_to "Edit this attendee_event", edit_attendee_event_path(@attendee_event) %> |
+  <%= link_to "Back to events", attendee_events_path %>
+
+  <%= button_to "Destroy this attendee_event", attendee_event_path(@attendee_event), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
