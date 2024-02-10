@@ -1,5 +1,6 @@
 <h1>Hello users</h1>
 
+<!--
 <form action="/users" method="post" accept-charset="UTF-8">
 
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -16,3 +17,19 @@
     <input type="submit">
 
 </form>
+-->
+
+<%= form_tag(users_path) do %>
+
+    <%= label_tag :user_name %>
+    <%= text_field_tag :user_name %>
+
+    <%= label_tag :email %>
+    <%= email_field_tag :email %>
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+
+    <%= submit_tag "Create User" %>
+
+<% end %>
