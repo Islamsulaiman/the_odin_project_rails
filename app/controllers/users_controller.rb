@@ -14,6 +14,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    byebug
+    @user = User.find(params[:id])
+
+    if @user.update!(permit_user)
+      redirect_to edit_user_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def permit_user
